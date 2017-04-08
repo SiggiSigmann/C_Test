@@ -12,9 +12,9 @@ typedef enum{
 }Test;
 
 typedef struct {
-	unsigned short int Case;
-	unsigned short int Expected;
-	char Name[100];
+	unsigned short int testCase;
+	unsigned short int expected;
+	char name[50];
 } TestCase;
 
 Test testFuntion(int input, int expected);
@@ -29,10 +29,10 @@ void runTest(int lenght, TestCase *test) {
 	int ok=0;
 	int fail=0;
 	for (int i = 0; i < lenght; i++) {
-		printf("Test Nr.%i (%s): \n", (i+1), test[i].Name);
-		printf("\tInput: %#x; Expected-Output: %#x; ", test[i].Case,
-				test[i].Expected);
-		t = testFuntion(test[i].Case, test[i].Expected);
+		printf("Test Nr.%i (%s): \n", (i+1), test[i].name);
+		printf("\tInput: %#x; Expected-Output: %#x; ", test[i].testCase,
+				test[i].expected);
+		t = testFuntion(test[i].testCase, test[i].expected);
 		if (OK == t) {
 			printf("\tOK \n");
 			ok++;
@@ -42,15 +42,9 @@ void runTest(int lenght, TestCase *test) {
 		}
 		printf("\n");
 	}
-	printf("Result Tests: %i OK: %i Fails: %i",lenght,ok,fail);
+	printf("Result Tests: %i OK: %i Fails: %i\n",lenght,ok,fail);
 }
 
-/*
- * testFuntion initialisiert den test und liefert das Ergebnis zurück.
- * @param input Funktionsparameter.
- * @param expected erwartetes Ergebnis.
- * @return Ergebis des Tests.
- */
 Test testFuntion(int input, int expected){
 	int soultion=input;
 
